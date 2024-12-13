@@ -1,15 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../redux/userSlice";
+import { getAllUsers } from "../redux/usersSlice";
 
 function UserList() {
   const dispatch = useDispatch();
 
-  const { users } = useSelector((store) => store.user);
-  console.log(users);
+  const { users, loading } = useSelector((store) => store.user);
+
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
+
+  if (loading) {
+    return (
+      <div id="loading-gif-div">
+        <img src="./src/assets/img/loading.gif" alt="loading" />
+      </div>
+    );
+  }
 
   return (
     <div>

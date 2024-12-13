@@ -19,6 +19,16 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+#loading-gif-div {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+#loading-gif-div img {
+  width: 60px;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

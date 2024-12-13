@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import UserList from "./components/UserList";
+import UserList from "./components/UsersList";
 
 function App() {
   return (

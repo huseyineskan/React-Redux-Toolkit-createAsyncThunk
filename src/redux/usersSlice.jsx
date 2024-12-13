@@ -13,7 +13,7 @@ export const getAllUsers = createAsyncThunk("users", async () => {
   return response.data;
 });
 
-export const userSlice = createSlice({
+export const usersSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -21,11 +21,19 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     //You can use here if there is HTTP request
-    builder.addCase(getAllUsers.fulfilled, (state, action) => {
-      state.users = action.payload;
-    });
+    builder
+      .addCase(getAllUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state) => {
+        state.loading = false;
+      });
   },
 });
 
-export const {} = userSlice.actions;
-export default userSlice.reducer;
+export const {} = usersSlice.actions;
+export default usersSlice.reducer;
